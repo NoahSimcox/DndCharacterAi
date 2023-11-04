@@ -1,20 +1,17 @@
 import openai
 
 
-openai.api_key = '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'
+openai.api_key = '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'
 
-Keywords = ["strength", "dexterity", "constitution", "intelligence", "speed", "wisdom", "charisma"]
+Keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
-def generate_Dnd_character(messages):
-    response = openai.Completion.create(
-        model="gpt-3.5-turbo",  # the engine in use
-        messages=messages
-    )
+message_content = f"Interpret the following Dungeons and Dragons character description: 'A strong and fast warrior with great knowledge of nature.' only output the words on this list [{', '.join(Keywords)}] that pertain to the character description."
+message_content2 = f"Interpret the following level one Dungeons and Dragons character description: 'A strong and fast warrior with great knowledge of nature.' only output a possible ability score based on the prompt for each of the following abilities [{', '.join(Keywords)}]."
 
-    return response.choices[0].message["content"]
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",  # the engine in use
+    messages=[{"role": "user", "content": message_content2}]
+)
 
-prompt = [{"role": "user", "content": "Interpret the following Dungeons and Dragons character description: 'A strong and fast warrior with great knowledge of nature.' Output the words on this list [" + ', '.join(Keywords) + "] that pertain to the character description."}]
 
-response = generate_Dnd_character(prompt)
-
-print(response)
+print(response.choices[0].message["content"])
