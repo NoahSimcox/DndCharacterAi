@@ -1,17 +1,39 @@
 import openai
 
 
-openai.api_key = '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'
+openai.api_key = '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'
 
-Keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
+keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
-message_content = f"Interpret the following Dungeons and Dragons character description: 'A strong and fast warrior with great knowledge of nature.' only output the words on this list [{', '.join(Keywords)}] that pertain to the character description."
-message_content2 = f"Interpret the following level one Dungeons and Dragons character description: 'A strong and fast warrior with great knowledge of nature.' only output a possible ability score based on the prompt for each of the following abilities [{', '.join(Keywords)}]."
 
-response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",  # the engine in use
-    messages=[{"role": "user", "content": message_content2}]
+raw_stat_rankings_prompt = f"Interpret the following level one Dungeons and Dragons character description: 'Spending all his time in the libraries this man is old and has the knowledge of 1000 sages.' rank these skills numerically from 1 to 6. 1 being the most relevent skill for the description and 6 being the least relevent [{', '.join(keywords)}]."
+
+raw_stat_rankings = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[{"role": "user", "content": raw_stat_rankings_prompt}]
 )
 
+raw_stat_rankings_response = raw_stat_rankings.choices[0].message["content"]
 
-print(response.choices[0].message["content"])
+
+refined_stat_rankings_prompt = f"Take this text:{raw_stat_rankings_response} and only output the ability names, in order, on one line"
+
+refined_stat_rankings = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[{"role": "user", "content": refined_stat_rankings_prompt}]
+)
+
+refined_stat_rankings_list = refined_stat_rankings.choices[0].message["content"].split()
+print(refined_stat_rankings_list)
+
+
+
+
+#dnd_class = openai.ChatCompletion.create(
+    #model="gpt-3.5-turbo",
+    #messages=[{"role": "user", "content": refined_stat_rankings_prompt}]
+#)
+
+
+
+
