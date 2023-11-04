@@ -1,5 +1,4 @@
 import openai
-import PythonTest
 
 
 openai.api_key = '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'
