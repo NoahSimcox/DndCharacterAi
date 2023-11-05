@@ -3,7 +3,7 @@ import HahaCantGetMySecretKey
 
 openai.api_key = HahaCantGetMySecretKey.openai.api_key
 
-prompt = "A mysterious cloacked figure whose eyes glow an intimidating red. While physically frail, his eldritch magic proves him threatening."
+prompt = "A wise holy warrior who gains power from their god. They are tall, graceful, with pointy ears and have lived for centuries."
 
 keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
