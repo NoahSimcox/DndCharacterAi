@@ -133,7 +133,7 @@ match pClass:
         profArmor = "light armor"
         profWeapon = "simple weapons, hand crossbows, longswords, rapiers, shortswords"
         profTools += "thieves' tools,"
-        profLanguages.append([", Thieves' Cant"])
+        profLanguages += ", Thieves' Cant"
         skillsKnown += 4
     case "Sorcerer":
         hitDie = 6
@@ -372,4 +372,4 @@ pdfWriter.update_page_form_field_values(
 with open("GeneratedCharacter.pdf", "wb") as output_stream:
     pdfWriter.write(output_stream)
 
-pdfFileObj.close()
+output_stream.close()
