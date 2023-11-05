@@ -3,7 +3,7 @@ import HahaCantGetMySecretKey
 
 openai.api_key = HahaCantGetMySecretKey.openai.api_key
 
-prompt = "there's the enigmatic wizard Aric, an elderly and bespectacled human with a vast knowledge of arcane spells. He carries a weathered spellbook filled with cryptic symbols and incantations, and his wrinkled hands crackle with the power of magic as he conjures spells with unparalleled precision. Aric is a scholar of the arcane arts, devoted to unlocking the secrets of the cosmos through the manipulation of magical forces."
+prompt = "A strong a burly man with a big beard. He is slow and dumb. But he is good with weapons and people. He also like big axes."
 
 keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
