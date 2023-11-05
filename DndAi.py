@@ -31,7 +31,7 @@ if dnd_class_var in ["Wizard", "Warlock", "Rogue", "Artificer"]:
     gp -= 25
 elif dnd_class_var in ["Sorcerer"]:
     gp -= 50
-elif dnd_class_var in ["Barbarian", "Monk"]:
+elif dnd_class_var in ["Barbarian", "Druid"]:
     gp -= 75
 elif dnd_class_var in ["Monk"]:
     gp -= 112
@@ -177,3 +177,11 @@ if  dnd_class_var in ["Warlock", "Wizard", "Bard", "Cleric", "Artificer", "Sorce
     #     dnd_refined_cantrip_list[l] = dnd_refined_cantrip_list[l].strip()
     #     l += 1
     # print(dnd_refined_cantrip_list)
+
+
+dnd_personality_traits_prompt = f"Using the prompt: '{prompt}' create a short descriction of two personality traits."
+
+dnd_personality_traits = openai.ChatCompletion.create(
+    model = "gpt-4"
+    messages=[{"role": "user", "content": dnd_personality_traits_prompt}]
+)
