@@ -22,15 +22,16 @@ pLevel = 1
 profBonus = int((pLevel+7)/4)
 pClass = DndAi.dnd_class_var
 # pSubclass = "None"
-pRace = "Dwarf"
+pRace = DndAi.dnd_race_var
 pBackground = "Acolyte"
-gearArmor = "Splint"
-gearWeapon = "Greatsword"
+gearArmor = DndAi.dnd_armor_var
+gearWeapon = DndAi.dnd_weapon_var
 gearMisc = ["Adventurer's Pack", "Ball Bearings"]
-possibleSkills = ["Athletics", "Religion", "Intimidation", "Medicine", "Performance"]
+possibleSkills = DndAi.dnd_profs_list
+
 
 # ability score determining
-statRanks = ["Strength", "Charisma", "Constitution", "Wisdom", "Intelligence", "Dexterity"]
+statRanks = DndAi.refined_stat_rankings_list
 scoreVals = [0,0,0,0,0,0]
 scoreMods = [0,0,0,0,0,0]
 match pRace:
@@ -68,6 +69,8 @@ profWeapon = ""
 profTools = ""
 profLanguages = "Common"
 skillsKnown = 3 # start with 3 from BG/the other stuff you'd be losing from BG
+expertiseCount = 0
+expertiseSkills = []
 match pClass: 
     case "Artificer":
         hitDie = 8
@@ -92,7 +95,7 @@ match pClass:
     case "Cleric":
         hitDie = 8
         profSaves = "WIS,CHA"
-        profArmor = "light & medium armor, as well as shields"
+        profArmor = "light, medium, & heavy armor, as well as shields"
         profWeapon = "simple weapons"
         skillsKnown += 2
     case "Druid":
