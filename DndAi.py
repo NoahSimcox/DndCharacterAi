@@ -3,7 +3,7 @@ import HahaCantGetMySecretKey
 
 openai.api_key = HahaCantGetMySecretKey.openai.api_key
 
-prompt = "a nimble and shadowy figure with a penchant for stealth and cunning. Sable's piercing gray eyes and quick fingers make them a master of infiltration, lock-picking, and uncovering hidden traps. Clad in dark leather armor and with a sly smirk, Sable excels in subterfuge, making them a formidable ally or a crafty adversary in the world of Dungeons & Dragons."
+prompt = "a wiry and agile elf with a penchant for precision and stealth. Varis is known for their quick wit, silent footsteps, and mastery of the dagger, making them a skilled pickpocket, lockbreaker, and assassin when needed. With a mysterious aura and a cloak that seems to blend into the shadows, Varis navigates the seedy underbelly of the world with finesse and finesse."
 
 keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
@@ -57,11 +57,15 @@ refined_stat_rankings = openai.ChatCompletion.create(
 )
 
 refined_stat_rankings_list = refined_stat_rankings.choices[0].message["content"].split(",")
+j = 0
+while j < len(refined_stat_rankings):
+    refined_stat_rankings_list[j] = refined_stat_rankings_list[j].strip()
+    j += 1
 print(refined_stat_rankings_list)
 
 
 #figuring out the race
-dnd_race_prompt = f"Using this prompt: '{prompt}' determine a suitable race, from Dnd 5e, for this character and output just that race name. It must only be one word."
+dnd_race_prompt = f"Using this prompt: '{prompt}' determine a common race, from Dnd 5e, and output just that race name."
 
 dnd_race = openai.ChatCompletion.create(
     model="gpt-4",
@@ -81,11 +85,15 @@ dnd_profs = openai.ChatCompletion.create(
 )
 
 dnd_profs_list = dnd_profs.choices[0].message["content"].split(",")
+i = 0
+while i < len(dnd_profs_list):
+    dnd_profs_list[i] = dnd_profs_list[i].strip()
+    i += 1
 print(dnd_profs_list)
 
 
 #figuring out the armor
-if dnd_class_var not in ["Wizard", "Warlock", "Rogue", "Artificer", "Monk"]:
+if dnd_class_var not in ["Wizard", "Warlock", "Sorcerer", "Monk"]:
     dnd_armor_prompt = f"Based on this class '{dnd_class_var}' choose an armor that costs less than or equal to {gp/2} from Dnd 5e. The output must only be the armor name."
 
     dnd_armor = openai.ChatCompletion.create(
