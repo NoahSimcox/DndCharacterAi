@@ -3,7 +3,7 @@ import HahaCantGetMySecretKey
 
 openai.api_key = HahaCantGetMySecretKey.openai.api_key
 
-prompt = "a formidable human knight in shining armor, bearing a sword and shield. He has earned his reputation as a fearless and skilled combatant, having honed his martial abilities through countless battles on the frontlines of wars and quests. Sir Cedric's unwavering dedication to chivalry and protecting the realm drives him to face any adversary with unwavering resolve."
+prompt = "a nimble and shadowy figure with a penchant for stealth and cunning. Sable's piercing gray eyes and quick fingers make them a master of infiltration, lock-picking, and uncovering hidden traps. Clad in dark leather armor and with a sly smirk, Sable excels in subterfuge, making them a formidable ally or a crafty adversary in the world of Dungeons & Dragons."
 
 keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
