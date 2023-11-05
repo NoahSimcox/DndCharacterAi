@@ -240,7 +240,37 @@ match pRace: # racial traits, also has languages
 
 finalProfLang = "Proficient in " + profArmor + "\nProficient in " + profWeapon + "\nFluent in " + profLanguages + "\n"
 
-# match pClass: # class traits
+match pClass: # class traits
+    case "Artificer":
+        featTraits += "Spellcasting: you are a Charisma-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a long rest.\nMagical Tinkering: If you're holding thieves' or artisan's tools, you can use an action to touch a Tiny object and give it one of the following properties:\n\t1) The object sheds bright light in a 5-foot radius and dim light for another 5 feet.\n\t2) When tapped by a creature, the object replays a 6-second message that you record when you tinker with the object. This can be heard up to 10 feet away.\n\t3) The object continuously emits a single odor or nonverbal sound that you choose, observable up to 10 feet away.\n\t4) A static visual effect appears on one of the object's surfaces. This effect can be a picture, up to 25 words of text, lines and shapes, or a mixture of these elements, as you like.\nThese properties last indefinitely and you can have up to " + pIntMod + " active at a time. You can cancel one effect as an action."
+    case "Barbarian":
+        featTraits += "Rage: You have 2 rages per long rest, and can enter one as a bonus action. While raging, you are unable to cast spells but gain:\n\t1) Advantage on Strength checks/saving throws\n\t2) +2 damage to Strength-based melee weapon attacks\n\t3) Resistance to piercing, bludgeoning, and slashing damage.\nRage ends after 1 minute, you spend 1 round without taking or dealing damage, or you end it as a bonus action.\nUnarmored Defense: If you aren't wearing any armor (a shield is fine), your AC equals " + str(10+pDexMod+pConMod) + "."
+    case "Bard":
+        featTraits += "Spellcasting: you are a Charisma-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a long rest.\nBardic Inspiration: You have " + pChaMod + " uses of bardic inspiration per long rest. You can use a bonus action to give a d6 'bardic inspiration die' to an ally within 60 feet of you. Once within the next 10 minutes, that ally can roll the die and add the result to one d20 roll it makes. A creature can only have 1 bardic inspiration die at a time."
+    case "Cleric":
+        featTraits += "Spellcasting: you are a Wisdom-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a long rest.\nDisciple of Life: Your healing spells each heal an additional 3 health."
+        # ADDITIONAL SPELLS: BLESS & CURE WOUNDS
+    case "Druid":
+        featTraits += "Spellcasting: you are a Wisdom-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a long rest."
+    case "Fighter":
+        featTraits += "Fighting Style (Defense): You gain +1 AC while wearing armor.\nSecond Wind: Once per long rest, you can use a bonus action to regain 1d10+1 health."
+    case "Monk":
+        featTraits += "Martial Arts: While you don't wear armor or a shield, you gain mastery over unarmed combat and monk weapons, which are shortswords and simple melee weapons without the two-handed or heavy properties. This allows you to use Dexterity instead of Strength for the attack/damage rolls of unarmed strikes & monk weapons, allows your unarmed strikes to deal 1d4 damage, and when you attack with an unarmed strike or monk weapon you can make one unarmed strike as a bonus action. \nUnarmored Defense: If you aren't wearing any armor or shield, your AC equals " + str(10+pDexMod+pWisMod) + "."
+    case "Paladin":
+        featTraits += "Divine Sense: " + str(1+pChaMod) + " times per long rest, you can use an action to learn the locations of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity.\nLay on Hands: you have a pool of 5 healing points that recharge on a long rest. You can use an action to spend some of these healing points to heal a creature you touch an amount of health equal to the points spent. Alternatively, you can spend all 5 healing points at once to cure one disease/poison afflicting a creature you touch."
+    case "Ranger":
+        featTraits += "Favored Foe: Twice per long rest when you hit a creature with an attack roll, you can mark them as your favored foe for one minute or until you lose your concentration (as if concentrating on a spell). The first time you damage your favored foe on each turn, including when you mark it, you deal +1d4 damage.\nCanny: You become fluent in Elvish and Gnomish if you are not already fluent in them. Additionally, gain expertise in one skill."
+        expertiseCount += 1
+    case "Rogue":
+        featTraits += "Expertise: Gain expertise in 2 skills.\nSneak Attack: Once per turn when you hit with a Dexterity-based attack roll, you can do +1d6 damage if you either 1) have advantage on the attack roll or 2) if you have an ally adjacent to the target and the attack doesn't have disadvantage."
+        expertiseCount += 2
+    case "Sorcerer":
+        featTraits += "Spellcasting: you are a Charisma-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a long rest.\nWild Magic Surge: whenever you cast a levelled spell, roll a d20. On a 1, roll on the Wild Magic table.\nTides of Chaos: You can use this ability to gain advantage on one d20 roll. You are then unable to use it until you cast a levelled spell, upon which you regain use of the feature and immediately roll on the wild magic table."
+    case "Warlock":
+        featTraits += "Spellcasting: you are a Charisma-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a short rest.\nDark One's Blessing: when you kill an enemy, you immediately gain " + str(pChaMod+pLevel) + " temporary hit points." 
+        # ADDITIONAL SPELLS: BURNING HANDS & COMMAND SPELLS
+    case "Wizard":
+        featTraits += "Spellcasting: you are an Intelligence-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a long rest.\nArcane Recovery: Once per long rest, you can regain 1 levels worth of expended spell slots when you complete a short rest."
 
 # money
 cp = random.randint(100, 300)
