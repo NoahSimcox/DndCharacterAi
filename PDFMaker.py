@@ -16,8 +16,11 @@ pdfWriter.add_page(pdfReader.pages[0])
 pdfWriter.add_page(pdfReader.pages[1])
 pdfWriter.add_page(pdfReader.pages[2])
 
+with open('GeneratedCharacter.pdf', 'wb') as edited_file:
+    pdfWriter.write(edited_file)
+
 # temp variables for now
-name = "Bob D. Builder"
+name = "Genericter"
 pLevel = 1
 profBonus = int((pLevel+7)/4)
 pClass = DndAi.dnd_class_var
