@@ -15,9 +15,6 @@ formFields = pdfReader.get_form_text_fields()
 with open('GeneratedCharacter.pdf', 'wb') as clean_file:
     pdfWriter.write(clean_file)
     pdfWriter.write(clean_file)
-    pdfWriter.write(clean_file)
-    pdfWriter.write(clean_file)
-    pdfWriter.write(clean_file)
 
 
 # copying page over to the writer, clear old PDF
