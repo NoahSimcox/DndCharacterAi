@@ -3,7 +3,7 @@ import HahaCantGetMySecretKey
 
 openai.api_key = HahaCantGetMySecretKey.openai.api_key
 
-prompt = "A strong a burly man with a big beard. He is slow and dumb. But he is good with weapons and people. He also like big axes."
+prompt = "A mysterious cloacked figure whose eyes glow an intimidating red. While physically frail, his eldritch magic proves him threatening."
 
 keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
