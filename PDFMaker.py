@@ -107,7 +107,7 @@ match pClass:
         hitDie = 10
         profSaves = "STR,CON"
         profArmor = "light, medium, & heavy armor, as well as shields"
-        profWeapon = "Martial"
+        profWeapon = "simple & martial weapons"
         skillsKnown += 2
     case "Monk":
         hitDie = 8
@@ -158,6 +158,27 @@ pSTCon = pConMod + profBonus*("CON" in profSaves)
 pSTInt = pIntMod + profBonus*("INT" in profSaves)
 pSTWis = pWisMod + profBonus*("WIS" in profSaves)
 pSTCha = pChaMod + profBonus*("CHA" in profSaves)
+
+# determine skills known
+skills = possibleSkills # limit this by the number of skills you can have
+pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)
+pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)
+pArcana = pIntMod + profBonus*("Arcana" in skills)
+pAthletics = pStrMod + profBonus*("Athletics" in skills)
+pDeception = pChaMod + profBonus*("Deception" in skills)
+pHistory = pIntMod + profBonus*("History" in skills)
+pInsight = pWisMod + profBonus*("Insight" in skills)
+pIntimidation = pChaMod + profBonus*("Intimidation" in skills)
+pInvestigation = pIntMod + profBonus*("Investigation" in skills)
+pMedicine = pWisMod + profBonus*("Medicine" in skills)
+pNature = pIntMod + profBonus*("Nature" in skills)
+pPerception = pWisMod + profBonus*("Perception" in skills)
+pPerformance = pChaMod + profBonus*("Performance" in skills)
+pPersuasion = pChaMod + profBonus*("Persuasion" in skills)
+pReligion = pWisMod + profBonus*("Religion" in skills)
+pSleightOfHand = pDexMod + profBonus*("Slight of Hand" in skills)
+pStealth = pDexMod + profBonus*("Stealth" in skills)
+pSurvival = pWisMod + profBonus*("Survival" in skills)
 
 # speed calcs
 pSpeed = 30
@@ -217,27 +238,6 @@ match pRace: # racial traits, also has languages
 finalProfLang = "Proficient in " + profArmor + "\nProficient in " + profWeapon + "\nFluent in " + profLanguages + "\n"
 
 # match pClass: # class traits
-
-# determine skills known
-skills = possibleSkills # limit this by the number of skills you can have
-pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)
-pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)
-pArcana = pIntMod + profBonus*("Arcana" in skills)
-pAthletics = pStrMod + profBonus*("Athletics" in skills)
-pDeception = pChaMod + profBonus*("Deception" in skills)
-pHistory = pIntMod + profBonus*("History" in skills)
-pInsight = pWisMod + profBonus*("Insight" in skills)
-pIntimidation = pChaMod + profBonus*("Intimidation" in skills)
-pInvestigation = pIntMod + profBonus*("Investigation" in skills)
-pMedicine = pWisMod + profBonus*("Medicine" in skills)
-pNature = pIntMod + profBonus*("Nature" in skills)
-pPerception = pWisMod + profBonus*("Perception" in skills)
-pPerformance = pChaMod + profBonus*("Performance" in skills)
-pPersuasion = pChaMod + profBonus*("Persuasion" in skills)
-pReligion = pWisMod + profBonus*("Religion" in skills)
-pSleightOfHand = pDexMod + profBonus*("Slight of Hand" in skills)
-pStealth = pDexMod + profBonus*("Stealth" in skills)
-pSurvival = pWisMod + profBonus*("Survival" in skills)
 
 # money
 cp = random.randint(100, 300)
