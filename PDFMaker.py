@@ -166,7 +166,7 @@ skills = possibleSkills # limit this by the number of skills you can have
 for i in range(expertiseCount):
     expertiseSkills += skills[i]
     
-pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)*(1 + "Acrobatics" in expertiseSkills)
+pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)*(1 + ("Acrobatics" in expertiseSkills))
 pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)*(1 + "Animal Handling" in expertiseSkills) 
 pArcana = pIntMod + profBonus*("Arcana" in skills)*(1 + "Arcana" in expertiseSkills)
 pAthletics = pStrMod + profBonus*("Athletics" in skills)*(1 + "Athletics" in expertiseSkills)
