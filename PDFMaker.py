@@ -162,10 +162,12 @@ pSTCha = pChaMod + profBonus*("CHA" in profSaves)
 
 
 # determine skills known
-skills = possibleSkills # limit this by the number of skills you can have
+skills = []
+for i in range(skillsKnown):
+    if(i < possibleSkills.length):
+        skills[i] = possibleSkills[i]
 for i in range(expertiseCount):
     expertiseSkills += skills[i]
-    
 pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)*(1 + "Acrobatics" in expertiseSkills)
 pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)*(1 + "Animal Handling" in expertiseSkills) 
 pArcana = pIntMod + profBonus*("Arcana" in skills)*(1 + "Arcana" in expertiseSkills)
