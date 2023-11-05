@@ -2,9 +2,9 @@ import PyPDF2
 import random
 import DndAi
 
-with open('DnDDefault.pdf', 'rb') as source_file:
-    pdfReader = PyPDF2.PdfReader(source_file)
-    
+# with open('DnDDefault.pdf', 'rb') as source_file:
+#     pdfReader = PyPDF2.PdfReader(source_file)
+pdfFileObj = open('DnDDefault.pdf', 'rb')
 
 # creating reader and writer objects
 pdfWriter = PyPDF2.PdfWriter()
