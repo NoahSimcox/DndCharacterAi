@@ -57,11 +57,14 @@ refined_stat_rankings = openai.ChatCompletion.create(
 )
 
 refined_stat_rankings_list = refined_stat_rankings.choices[0].message["content"].split(",")
+j = 0
+while j < len(refined_stat_rankings):
+    refined_stat_rankings_list[j] = refined_stat_rankings_list[j].strip()
 print(refined_stat_rankings_list)
 
 
 #figuring out the race
-dnd_race_prompt = f"Using this prompt: '{prompt}' determine a suitable race, from Dnd 5e, for this character and output just that race name. It must only be one word."
+dnd_race_prompt = f"Using this prompt: '{prompt}' determine a suitable 'race', from Dnd 5e, for this character and output just that race name. It must only be one word."
 
 dnd_race = openai.ChatCompletion.create(
     model="gpt-4",
@@ -81,11 +84,14 @@ dnd_profs = openai.ChatCompletion.create(
 )
 
 dnd_profs_list = dnd_profs.choices[0].message["content"].split(",")
+i = 0
+while i < len(dnd_profs_list):
+    dnd_profs_list[i] = dnd_profs_list[i].strip()
 print(dnd_profs_list)
 
 
 #figuring out the armor
-if dnd_class_var not in ["Wizard", "Warlock", "Rogue", "Artificer", "Monk"]:
+if dnd_class_var not in ["Wizard", "Warlock", "Sorcerer", "Monk"]:
     dnd_armor_prompt = f"Based on this class '{dnd_class_var}' choose an armor that costs less than or equal to {gp/2} from Dnd 5e. The output must only be the armor name."
 
     dnd_armor = openai.ChatCompletion.create(
