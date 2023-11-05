@@ -21,9 +21,7 @@ name = "Bob D. Builder"
 pLevel = 1
 profBonus = int((pLevel+7)/4)
 pClass = DndAi.dnd_class_var
-# pSubclass = "None"
 pRace = DndAi.dnd_race_var
-pBackground = "Acolyte"
 gearArmor = DndAi.dnd_armor_var
 gearWeapon = DndAi.dnd_weapon_var
 gearMisc = ["Adventurer's Pack", "Ball Bearings"]
@@ -279,6 +277,30 @@ ep = 0
 gp = 999
 pp = 0
 
+# armor
+ac = 10 + (pClass == "Fighter")
+match gearArmor:
+    case "Padded" | "Leather":
+        ac += 1 + pDexMod
+    case "Studded Leather":
+        ac += 2 + pDexMod
+    case "Hide":
+        ac += 2 + min(pDexMod, 2)
+    case "Chain Shirt":
+        ac += 3 + min(pDexMod, 2)
+    case "Scale Mind" | "Breastplate":
+        ac += 4 + min(pDexMod, 2)
+    case "Halfplate" | "Half Plate":
+        ac += 5 + min(pDexMod, 2)
+    case "Rain Mail":
+        ac += 4
+    case "Chain Mail":
+        ac += 6
+    case "Scale" | "Scale Mail":
+        ac += 7
+    case "Plate" | "Plate Mail":
+        ac += 8
+
 # place everything in the writer object
 pdfWriter.update_page_form_field_values(
     pdfWriter.pages[0], {
@@ -332,6 +354,7 @@ pdfWriter.update_page_form_field_values(
         "HPMax": pMaxHP,
         "Features and Traits": featTraits,
         "ProficienciesLang": finalProfLang,
+        "AC": ac,
         
         # Stuff to comment out if you are printing it out
         "HD": (str(pLevel) + "d" + str(hitDie)),
