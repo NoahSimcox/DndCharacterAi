@@ -11,12 +11,13 @@ pdfReader = PyPDF2.PdfReader(pdfFileObj)
 pdfWriter = PyPDF2.PdfWriter()
 formFields = pdfReader.get_form_text_fields()
 
+with open('GeneratedCharacter.pdf', 'wb') as clean_file:
+    pdfWriter.write(clean_file)
+
 # copying page over to the writer, clear old PDF
 pdfWriter.add_page(pdfReader.pages[0])
 pdfWriter.add_page(pdfReader.pages[1])
 
-with open('DnDDefault2.pdf', 'wb') as clean_file:
-    pdfWriter.write(clean_file)
 
 # temp variables for now
 name = "Genericter"
