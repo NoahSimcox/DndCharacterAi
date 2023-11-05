@@ -239,7 +239,8 @@ match pRace: # racial traits, also has languages
         featTraits += "Darkvision: You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\nHellish Resistance: You resist fire damage.\n"
         profLanguages += ", Infernal"
         # ADD THAT TIEFLINGS GET THE THAUMATURGY CANTRIP
-
+if profArmor == "":
+    finalProfLang = "\nProficient in " + str(profWeapon) + "\nFluent in " + str(profLanguages) + "\n"
 finalProfLang = "Proficient in " + str(profArmor) + "\nProficient in " + str(profWeapon) + "\nFluent in " + str(profLanguages) + "\n"
 
 match pClass: # class traits
@@ -391,6 +392,12 @@ if(gearWeapon in ["Longbow"]):
 if(gearWeapon in ["Heavy Crossbow"]):
     weaponTags += "\nRanged 100/400 (Must be used for a Dexterity-based ranged attack. Aiming within 100 feet is a normal roll, within 400 feet has disadvantage)"
 
+weapDmg = str(dmgDie + "+" + str(weaponB) + " " + dmgType)
+
+if gearWeapon == "":
+    weaponTags = ""
+    weapDmg = ""
+    wAtkB = ""
 
 # place everything in the writer object
 pdfWriter.update_page_form_field_values(
@@ -449,7 +456,7 @@ pdfWriter.update_page_form_field_values(
         "AttacksSpellcasting": weaponTags,
         "Wpn Name": gearWeapon,
         "Wpn1 AtkBonus": wAtkB,
-        "Wpn1 Damage": dmgDie + "+" + str(weaponB) + " " + dmgType,
+        "Wpn1 Damage": weapDmg,
         
         # Stuff to comment out if you are printing it out
         "HD": (str(pLevel) + "d" + str(hitDie)),
