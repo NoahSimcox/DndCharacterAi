@@ -2,11 +2,13 @@ import PyPDF2
 import random
 import DndAi
 
-with open('DnDDefault.pdf', 'rb') as pdf_file:
-    pdfReader = PyPDF2.PdfReader(pdf_file)
+pdf_file = open('DnDDefault.pdf', 'rb')
+updated_pdf_file = open('GeneratedCharacter.pdf', 'wb')
+    
 
 # creating reader and writer objects
-pdfWriter = PyPDF2.PdfWriter()
+pdfReader = PyPDF2.PdfReader(pdf_file)
+pdfWriter = PyPDF2.PdfWriter(updated_pdf_file)
 formFields = pdfReader.get_form_text_fields()
 
 # copying page over to the writer, clear old PDF
@@ -462,7 +464,5 @@ pdfWriter.update_page_form_field_values(
 
 
 # put everything in the new PDF
-with open("GeneratedCharacter.pdf", "wb") as updated_pdf_file:
-    pdfWriter.write(updated_pdf_file)
-    
+pdf_file.close() 
 updated_pdf_file.close()
