@@ -1,5 +1,6 @@
 import PyPDF2
 import random
+import DndAi
 
 pdfFileObj = open('DnDDefault.pdf', 'rb')
 
@@ -19,7 +20,7 @@ with open("GeneratedCharacter.pdf", "wb") as output_stream:
 name = "Bob D. Builder"
 pLevel = 1
 profBonus = int((pLevel+7)/4)
-pClass = "Paladin"
+pClass = DndAi.dnd_class_var
 # pSubclass = "None"
 pRace = "Dwarf"
 pBackground = "Acolyte"
