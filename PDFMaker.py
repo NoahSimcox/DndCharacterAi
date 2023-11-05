@@ -16,8 +16,8 @@ pdfWriter.add_page(pdfReader.pages[0])
 pdfWriter.add_page(pdfReader.pages[1])
 pdfWriter.add_page(pdfReader.pages[2])
 
-with open('GeneratedCharacter.pdf', 'wb') as edited_file:
-    pdfWriter.write(edited_file)
+with open('GeneratedCharacter.pdf', 'wb') as clean_file:
+    pdfWriter.write(clean_file)
 
 # temp variables for now
 name = "Genericter"
