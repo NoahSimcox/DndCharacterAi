@@ -499,3 +499,5 @@ if spellStat != "No":
 # put everything in the new PDF
 with open('GeneratedCharacter.pdf', 'wb') as edited_file:
     pdfWriter.write(edited_file)
+
+edited_file.close()
