@@ -132,21 +132,6 @@ if  dnd_class_var in ["Warlock", "Wizard", "Bard", "Cleric", "Artificer", "Sorce
         dnd_raw_spell_list[k] = dnd_raw_spell_list[k].strip()
         k += 1
     print(dnd_raw_spell_list)
-    
-#figuring out the refined spells
-    # dnd_refined_spell_prompt = f"Take this text: '{dnd_raw_spell_list}' and get rid of all the words and numbers that are not the spells."
-
-    # dnd_refined_spell = openai.ChatCompletion.create(
-    #     model="gpt-4",
-    #     messages=[{"role": "user", "content": dnd_refined_spell_prompt}]
-    # )
-    
-    # dnd_refined_spell_list = dnd_refined_spell.choices[0].message["content"].split()
-    # k = 0
-    # while k < len(dnd_refined_spell):
-    #     dnd_refined_spell_list[k] = dnd_refined_spell_list[k].strip()
-    #     k += 1
-    # print(dnd_refined_spell_list)
  
 
 #figuring out the raw cantrips
@@ -164,64 +149,50 @@ if  dnd_class_var in ["Warlock", "Wizard", "Bard", "Cleric", "Artificer", "Sorce
         l += 1
     print(dnd_raw_cantrip_list)
     
-#figuring out the refined cantrips
-    # dnd_refined_cantrip_prompt = f"Take this text: '{dnd_raw_cantrip_list}' and get rid of all the words and numbers that are not the cantrips."
 
-    # dnd_refined_cantrip = openai.ChatCompletion.create(
-    #     model="gpt-4",
-    #     messages=[{"role": "user", "content": dnd_refined_cantrip_prompt}]
-    # )
-    
-    # dnd_refined_cantrip_list = dnd_refined_cantrip.choices[0].message["content"].split()
-    # l = 0
-    # while l < len(dnd_refined_cantrip):
-    #     dnd_refined_cantrip_list[l] = dnd_refined_cantrip_list[l].strip()
-    #     l += 1
-    # print(dnd_refined_cantrip_list)
+# personality traits
+dnd_personality_traits_prompt = f"Using the prompt: '{prompt}' create a one sentence descriction of two personality traits."
 
-#personality traits
-# dnd_personality_traits_prompt = f"Using the prompt: '{prompt}' create a one sentence descriction of two personality traits."
+dnd_personality_traits = openai.ChatCompletion.create(
+    model = "gpt-4",
+    messages=[{"role": "user", "content": dnd_personality_traits_prompt}]
+)
 
-# dnd_personality_traits = openai.ChatCompletion.create(
-#     model = "gpt-4",
-#     messages=[{"role": "user", "content": dnd_personality_traits_prompt}]
-# )
-
-# dnd_personality_traits_var = dnd_personality_traits.choices[0].message["content"]
-# print(dnd_personality_traits_var)
+dnd_personality_traits_var = dnd_personality_traits.choices[0].message["content"]
+print(dnd_personality_traits_var)
 
 
-# #ideals
-# dnd_ideals_prompt = f"Using the prompt: '{prompt}' create an ideal and give it a one sentence description."
+#ideals
+dnd_ideals_prompt = f"Using the prompt: '{prompt}' create an ideal and give it a one sentence description."
 
-# dnd_ideals = openai.ChatCompletion.create(
-#     model = "gpt-4",
-#     messages=[{"role": "user", "content": dnd_ideals_prompt}]
-# )
+dnd_ideals = openai.ChatCompletion.create(
+    model = "gpt-4",
+    messages=[{"role": "user", "content": dnd_ideals_prompt}]
+)
 
-# dnd_ideals_var = dnd_ideals.choices[0].message["content"]
-# print(dnd_ideals_var)
-
-
-# #bonds
-# dnd_bonds_prompt = f"Using the prompt: '{prompt}' make up a bond this charcter has and describe it in one sentence."
-
-# dnd_bonds = openai.ChatCompletion.create(
-#     model = "gpt-4",
-#     messages=[{"role": "user", "content": dnd_bonds_prompt}]
-# )
-
-# dnd_bonds_var = dnd_bonds.choices[0].message["content"]
-# print(dnd_bonds_var)
+dnd_ideals_var = dnd_ideals.choices[0].message["content"]
+print(dnd_ideals_var)
 
 
-# #flaws
-# dnd_flaws_prompt = f"Using the prompt: '{prompt}' make up two flaws and describe them each in one sentence."
+#bonds
+dnd_bonds_prompt = f"Using the prompt: '{prompt}' make up a bond this charcter has and describe it in one sentence."
 
-# dnd_flaws = openai.ChatCompletion.create(
-#     model = "gpt-4",
-#     messages=[{"role": "user", "content": dnd_flaws_prompt}]
-# )
+dnd_bonds = openai.ChatCompletion.create(
+    model = "gpt-4",
+    messages=[{"role": "user", "content": dnd_bonds_prompt}]
+)
 
-# dnd_flaws_var = dnd_flaws.choices[0].message["content"]
-# print(dnd_flaws_var)
+dnd_bonds_var = dnd_bonds.choices[0].message["content"]
+print(dnd_bonds_var)
+
+
+#flaws
+dnd_flaws_prompt = f"Using the prompt: '{prompt}' make up two flaws and describe them each in one sentence."
+
+dnd_flaws = openai.ChatCompletion.create(
+    model = "gpt-4",
+    messages=[{"role": "user", "content": dnd_flaws_prompt}]
+)
+
+dnd_flaws_var = dnd_flaws.choices[0].message["content"]
+print(dnd_flaws_var)
