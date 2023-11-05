@@ -302,11 +302,10 @@ match gearArmor:
         ac += 8
 
 # weapons
-weaponBase = pStrMod
-weaponTags = ""
+weaponB = pStrMod
 if(gearWeapon in ["Dagger", "Shortsword", "Rapier", "Scimitar", "Whip", "Light Crossbow", "Dart", "Shortbow", "Sling", "Hand Crossbow", "Heavy Crossbow", "Longbow"]):
-    weaponBase = pDexMod
-wAtkBonus = weaponBase + profBonus 
+    weaponB = pDexMod
+wAtkB = weaponB + profBonus 
 
 dmgDie = "1d8"
 match gearWeapon:
@@ -322,7 +321,41 @@ match gearWeapon:
         dmgDie = "1d12"
     case "Greatsword" | "Maul":
         dmgDie = "2d6"
+
 dmgType = "s"
+match gearWeapon:
+    case "Club" | "Greatclub" | "Light Hammer" | "Mace" | "Quarterstaff" | "Flail" | "Maul" | "Warhammer":
+        dmgType = "b"
+    case "Dagger" | "Javelin" | "Spear" | "Light Crossbow" | "Dart" | "Shortbow" | "Sling" | "Lance" | "Morningstar" | "Pike" | "Rapier" | "Shortsword" | "Trident" | "War Pick" | "Blowgun" | "Hand Crossbow" | "Heavy Crossbow" | "Longbow":
+        dmgType = "p"
+
+weaponTags = gearWeapon + " has the following tags: "
+if(gearWeapon in ["Dagger", "Rapier", "Scimitar", "Shortsword", "Whip"]):
+    weaponTags += "\nFinesse (Attacks with Dexterity, not Strength)"
+if(gearWeapon in ["Club", "Handaxe", "Light Hammer", "Sickle", "Scimitar", "Shortsword", "Hand Crossbow"]):
+    weaponTags += "\nLight (Can be dual wielded effectively)"
+if(gearWeapon in ["Glaive", "Halberd", "Lance", "Pike", "Whip"]):
+    weaponTags += "\nReach (Range is 10 feet, not 5 feet)"
+if(gearWeapon in ["Greatclub", "Light Crossbow", "Shortbow", "Glaive", "Greataxe", "Greatsword", "Halberd", "Maul", "Pike", "Heavy Crossbow", "Longbow"]):
+    weaponTags += "\nTwo-Handed (Requires two hands to attack with)"
+if(gearWeapon in ["Quarterstaff", "Spear", "Battleaxe", "Longsword", "Trident", "Warhammer"]):
+    weaponTags += "Versatile (If you wield this weapon with two hands, increase the damage die by 1 stage. Ex: 1d8 -> 1d10)"
+
+if(gearWeapon in ["Dagger", "Handaxe", "Light Hammer", "Spear", "Dart", "Trident"]):
+    weaponTags += "\nThrown 20/60 (Can be thrown as a ranged attack using the same modifier you usually would. Within 20 feet is a normal roll, within 60 feet has disadvantage)"
+if(gearWeapon in ["Javelin"]):
+    weaponTags += "\nThrown 30/120 (Can be thrown as a ranged attack using the same modifier you usually would. Within 30 feet is a normal roll, within 120 feet has disadvantage)"
+if(gearWeapon in ["Light Crossbow", "Shortbow"]):
+    weaponTags += "\nRanged 80/320 (Must be used for a Dexterity-based ranged attack. Aiming within 80 feet is a normal roll, within 320 feet has disadvantage)"
+if(gearWeapon in ["Sling", "Hand Crossbow"]):
+    weaponTags += "\nRanged 30/120 (Must be used for a Dexterity-based ranged attack. Aiming within 30 feet is a normal roll, within 120 feet has disadvantage)"
+if(gearWeapon in ["Blowgun"]):
+    weaponTags += "\nRanged 25/100 (Must be used for a Dexterity-based ranged attack. Aiming within 25 feet is a normal roll, within 100 feet has disadvantage)"
+if(gearWeapon in ["Longbow"]):
+    weaponTags += "\nRanged 150/600 (Must be used for a Dexterity-based ranged attack. Aiming within 150 feet is a normal roll, within 600 feet has disadvantage)"
+if(gearWeapon in ["Heavy Crossbow"]):
+    weaponTags += "\nRanged 100/400 (Must be used for a Dexterity-based ranged attack. Aiming within 100 feet is a normal roll, within 400 feet has disadvantage)"
+
 
 # place everything in the writer object
 pdfWriter.update_page_form_field_values(
