@@ -514,4 +514,5 @@ if spellStat != "No":
 with open('GeneratedCharacter.pdf', 'wb') as edited_file:
     pdfWriter.write(edited_file)
 
+clean()
 edited_file.close()
