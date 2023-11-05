@@ -17,9 +17,6 @@ pdfWriter.add_page(pdfReader.pages[2])
 
 with open('DnDDefault.pdf', 'wb') as clean_file:
     pdfWriter.write(clean_file)
-    pdfWriter.write(clean_file)
-    pdfWriter.write(clean_file)
-    pdfWriter.write(clean_file)
 
 # temp variables for now
 name = "Genericter"
