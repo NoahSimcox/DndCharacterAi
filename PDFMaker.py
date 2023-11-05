@@ -271,10 +271,19 @@ match pClass: # class traits
         featTraits += "Spellcasting: you are an Intelligence-based spellcaster, and have cantrips & spells listed in the spellcasting page of your character sheet. Cantrips can be cast repeatedly, but each use of a first level spell expends a first level spell slot, which regenerate when you complete a long rest.\nArcane Recovery: Once per long rest, you can regain 1 levels worth of expended spell slots when you complete a short rest.\n"
 
 # money
+gp = 125
+if pClass in ["Wizard", "Warlock", "Rogue", "Artificer"]:
+    gp -= 25
+elif pClass in ["Sorcerer"]:
+    gp -= 50
+elif pClass in ["Barbarian", "Druid"]:
+    gp -= 75
+elif pClass in ["Monk"]:
+    gp -= 112
+
 cp = random.randint(100, 300)
 sp = int((1000 - cp) / 10)
 ep = 0
-gp = 999
 pp = 0
 
 # armor
@@ -282,24 +291,38 @@ ac = 10 + (pClass == "Fighter")
 match gearArmor:
     case "Padded Armor" | "Leather Armor":
         ac += 1 + pDexMod
+        gp -= 10
     case "Studded Leather":
         ac += 2 + pDexMod
+        gp -= 45
     case "Hide Armor":
         ac += 2 + min(pDexMod, 2)
+        gp -= 10
     case "Chain Shirt":
         ac += 3 + min(pDexMod, 2)
-    case "Scale Mind" | "Breastplate":
+        gp -= 50
+    case "Scale Mail":
         ac += 4 + min(pDexMod, 2)
+        gp -= 50
+    case "Breastplate":
+        ac += 4 + min(pDexMod, 2)
+        gp -= 400
     case "Halfplate" | "Half Plate":
         ac += 5 + min(pDexMod, 2)
-    case "Rain Mail":
+        gp -= 750
+    case "Ring Mail":
         ac += 4
+        gp -= 30
     case "Chain Mail":
         ac += 6
-    case "Scale" | "Scale Mail":
+        gp -= 75
+    case "Splint" | "Splint Armor":
         ac += 7
+        gp -= 200
     case "Plate" | "Plate Mail" | "Plate Armor":
         ac += 8
+        gp -= 1500
+
 
 # weapons
 weaponB = pStrMod
@@ -311,16 +334,24 @@ dmgDie = "1d8"
 match gearWeapon:
     case "Blowgun":
         dmgDie = "1"
+        gp -= 10
     case "Club" | "Dagger" | "Light Hammer" | "Sickle" | "Dart" | "Sling":
         dmgDie = "1d4"
+        gp -= 2
     case "Handaxe" | "Javelin" | "Mace" | "Quarterstaff" | "Spear" | "Shortbow" | "Scimitar" | "Shortsword" | "Trident" | "Hand Crossbow":
         dmgDie = "1d6"
+        gp -= 10
     case "Glaive" | "Halberd" | "Pike" | "Heavy Crossbow":
         dmgDie = "1d10"
+        gp -= 20
     case "Greataxe" | "Lance":
         dmgDie = "1d12"
+        gp -= 20
     case "Greatsword" | "Maul":
         dmgDie = "2d6"
+        gp -= 30
+
+if(gp <= 0): gp = 0
 
 dmgType = "s"
 match gearWeapon:
@@ -411,6 +442,10 @@ pdfWriter.update_page_form_field_values(
         "Features and Traits": featTraits,
         "ProficienciesLang": finalProfLang,
         "AC": ac,
+        "AttacksSpellcasting": weaponTags,
+        "Wpn Name": gearWeapon,
+        "Wpn1 AtkBonus": wAtkB,
+        "Wpn1 Damage": dmgDie + "+" + weaponB + " " + dmgType,
         
         # Stuff to comment out if you are printing it out
         "HD": (str(pLevel) + "d" + str(hitDie)),
