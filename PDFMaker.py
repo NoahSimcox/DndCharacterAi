@@ -461,6 +461,40 @@ pdfWriter.update_page_form_field_values(
     }
 )
 
+# spells
+spellStat = "No"
+keyScore = 0
+if(pClass in ["Artificer", "Wizard"]):
+    spellStat = "Int"
+    keyScore = pIntMod
+elif(pClass in ["Cleric", "Druid"]):
+    spellStat = "Wis"
+    keyScore = pWisMod
+elif(pClass in ["Bard", "Sorcerer", "Warlock"]):
+    spellStat = "Cha"
+    keyScore = pChaMod
+cantrips = DndAi.dnd_raw_cantrip_list
+level1s = DndAi.dnd_raw_spell_list
+
+if spellStat != "No":
+    pdfWriter.update_page_form_field_values(
+        pdfWriter.pages[1], {
+            "Spellcasting Class 2": pClass,
+            "SpellcastingAbility 2": spellStat,
+            "SpellSaveDC  2": str(10 + keyScore),
+            "SpellAtkBonus 2": str(2 + keyScore),
+            "SlotsTotal 19": "Max Spell Slots",
+            "SlotsRemaining 19": "Spell Slots Left",
+            "Spells 1014": "Cantrip1",
+            "Spells 1016": "Cantrip2",
+            "Spells 1017": "Cantrip3",
+            "Spells 1018": "Cantrip4",
+            "Spells 1015": "1stLevel1",
+            "Spells 1023": "1stLevel2",
+            "Spells 1024": "1stLevel3",
+            "Spells 1025": "1stLevel4"
+        }
+    )
 
 # put everything in the new PDF
 with open('GeneratedCharacter.pdf', 'wb') as edited_file:
