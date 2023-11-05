@@ -3,7 +3,7 @@ import HahaCantGetMySecretKey
 
 openai.api_key = HahaCantGetMySecretKey.openai.api_key
 
-prompt = "a wiry and agile elf with a penchant for precision and stealth. Varis is known for their quick wit, silent footsteps, and mastery of the dagger, making them a skilled pickpocket, lockbreaker, and assassin when needed. With a mysterious aura and a cloak that seems to blend into the shadows, Varis navigates the seedy underbelly of the world with finesse and finesse."
+prompt = "there's the enigmatic wizard Aric, an elderly and bespectacled human with a vast knowledge of arcane spells. He carries a weathered spellbook filled with cryptic symbols and incantations, and his wrinkled hands crackle with the power of magic as he conjures spells with unparalleled precision. Aric is a scholar of the arcane arts, devoted to unlocking the secrets of the cosmos through the manipulation of magical forces."
 
 keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
@@ -58,7 +58,7 @@ refined_stat_rankings = openai.ChatCompletion.create(
 
 refined_stat_rankings_list = refined_stat_rankings.choices[0].message["content"].split(",")
 j = 0
-while j < len(refined_stat_rankings):
+while j < len(refined_stat_rankings_list):
     refined_stat_rankings_list[j] = refined_stat_rankings_list[j].strip()
     j += 1
 print(refined_stat_rankings_list)
@@ -100,7 +100,7 @@ if dnd_class_var not in ["Wizard", "Warlock", "Sorcerer", "Monk"]:
         model="gpt-4",
         messages=[{"role": "user", "content": dnd_armor_prompt}]
     )
-    dnd_armor_var = dnd_armor.choices[0].message["content"]
+    dnd_armor_var = dnd_armor.choices[0].message["content"].strip()
     print(dnd_armor_var)
 
 
@@ -112,7 +112,7 @@ if  dnd_class_var in ["Fighter", "Barbarian", "Rogue", "Monk", "Paladin", "Range
         model="gpt-4",
         messages=[{"role": "user", "content": dnd_weapon_prompt}]
     )
-    dnd_weapon_var = dnd_weapon.choices[0].message["content"]
+    dnd_weapon_var = dnd_weapon.choices[0].message["content"].strip()
     print(dnd_weapon_var)
 
 
@@ -125,21 +125,30 @@ if  dnd_class_var in ["Warlock", "Wizard", "Bard", "Cleric", "Artificer", "Sorce
         messages=[{"role": "user", "content": dnd_raw_spell_prompt}]
     )
     
-    dnd_raw_spell_var = dnd_raw_spell.choices[0].message["content"]
+    dnd_raw_spell_list = dnd_raw_spell.choices[0].message["content"].split(",")
+    k = 0
+    while k < len(dnd_raw_spell_list):
+        dnd_raw_spell_list[k] = dnd_raw_spell_list[k].strip()
+        k += 1
+    print(dnd_raw_spell_list)
     
 #figuring out the refined spells
-    dnd_refined_spell_prompt = f"Take this text: '{dnd_raw_spell_var}' and get rid of all the words and numbers that are not the spells and put a comma after every spell."
+    # dnd_refined_spell_prompt = f"Take this text: '{dnd_raw_spell_list}' and get rid of all the words and numbers that are not the spells."
 
-    dnd_refined_spell = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": dnd_refined_spell_prompt}]
-    )
+    # dnd_refined_spell = openai.ChatCompletion.create(
+    #     model="gpt-4",
+    #     messages=[{"role": "user", "content": dnd_refined_spell_prompt}]
+    # )
     
-    dnd_refined_spell_var = dnd_refined_spell.choices[0].message["content"].split(",")
-    print(dnd_refined_spell_var)
+    # dnd_refined_spell_list = dnd_refined_spell.choices[0].message["content"].split()
+    # k = 0
+    # while k < len(dnd_refined_spell):
+    #     dnd_refined_spell_list[k] = dnd_refined_spell_list[k].strip()
+    #     k += 1
+    # print(dnd_refined_spell_list)
  
 
-#figuring out the rawcantrips
+#figuring out the raw cantrips
     dnd_raw_cantrip_prompt = f"Using this prompt: '{prompt}' determine 4 cantrips a level one {dnd_class_var} would have in Dnd 5e. The output must only be the cantrip names. No spells."
 
     dnd_raw_cantrip = openai.ChatCompletion.create(
@@ -147,16 +156,24 @@ if  dnd_class_var in ["Warlock", "Wizard", "Bard", "Cleric", "Artificer", "Sorce
         messages=[{"role": "user", "content": dnd_raw_cantrip_prompt}]
     )
     
-    dnd_raw_cantrip_var = dnd_raw_cantrip.choices[0].message["content"]
+    dnd_raw_cantrip_list = dnd_raw_cantrip.choices[0].message["content"].split(",")
+    l = 0
+    while l < len(dnd_raw_cantrip_list):
+        dnd_raw_cantrip_list[l] = dnd_raw_cantrip_list[l].strip()
+        l += 1
+    print(dnd_raw_cantrip_list)
     
 #figuring out the refined cantrips
-    dnd_refined_cantrip_prompt = f"Take this text: '{dnd_raw_cantrip_var}' and get rid of all the words and numbers that are not the cantrips and put a comma after every cantrip."
+    # dnd_refined_cantrip_prompt = f"Take this text: '{dnd_raw_cantrip_list}' and get rid of all the words and numbers that are not the cantrips."
 
-    dnd_refined_cantrip = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": dnd_refined_cantrip_prompt}]
-    )
+    # dnd_refined_cantrip = openai.ChatCompletion.create(
+    #     model="gpt-4",
+    #     messages=[{"role": "user", "content": dnd_refined_cantrip_prompt}]
+    # )
     
-    dnd_refined_cantrip_var = dnd_refined_cantrip.choices[0].message["content"].split(",")
-    print(dnd_refined_cantrip_var)
-   
+    # dnd_refined_cantrip_list = dnd_refined_cantrip.choices[0].message["content"].split()
+    # l = 0
+    # while l < len(dnd_refined_cantrip):
+    #     dnd_refined_cantrip_list[l] = dnd_refined_cantrip_list[l].strip()
+    #     l += 1
+    # print(dnd_refined_cantrip_list)
