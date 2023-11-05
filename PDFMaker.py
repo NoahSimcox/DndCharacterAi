@@ -160,26 +160,29 @@ pSTInt = pIntMod + profBonus*("INT" in profSaves)
 pSTWis = pWisMod + profBonus*("WIS" in profSaves)
 pSTCha = pChaMod + profBonus*("CHA" in profSaves)
 
+for i in range(expertiseCount):
+    expertiseSkills += skills[i]
+
 # determine skills known
 skills = possibleSkills # limit this by the number of skills you can have
-pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)
-pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)
-pArcana = pIntMod + profBonus*("Arcana" in skills)
-pAthletics = pStrMod + profBonus*("Athletics" in skills)
-pDeception = pChaMod + profBonus*("Deception" in skills)
-pHistory = pIntMod + profBonus*("History" in skills)
-pInsight = pWisMod + profBonus*("Insight" in skills)
-pIntimidation = pChaMod + profBonus*("Intimidation" in skills)
-pInvestigation = pIntMod + profBonus*("Investigation" in skills)
-pMedicine = pWisMod + profBonus*("Medicine" in skills)
-pNature = pIntMod + profBonus*("Nature" in skills)
-pPerception = pWisMod + profBonus*("Perception" in skills)
-pPerformance = pChaMod + profBonus*("Performance" in skills)
-pPersuasion = pChaMod + profBonus*("Persuasion" in skills)
-pReligion = pWisMod + profBonus*("Religion" in skills)
-pSleightOfHand = pDexMod + profBonus*("Slight of Hand" in skills)
-pStealth = pDexMod + profBonus*("Stealth" in skills)
-pSurvival = pWisMod + profBonus*("Survival" in skills)
+pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)*(1 + "Acrobatics" in expertiseSkills)
+pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)*(1 + "Animal Handling" in expertiseSkills) 
+pArcana = pIntMod + profBonus*("Arcana" in skills)*(1 + "Arcana" in expertiseSkills)
+pAthletics = pStrMod + profBonus*("Athletics" in skills)*(1 + "Athletics" in expertiseSkills)
+pDeception = pChaMod + profBonus*("Deception" in skills)*(1 + "Deception" in expertiseSkills)
+pHistory = pIntMod + profBonus*("History" in skills)*(1 + "History" in expertiseSkills)
+pInsight = pWisMod + profBonus*("Insight" in skills)*(1 + "Insight" in expertiseSkills)
+pIntimidation = pChaMod + profBonus*("Intimidation" in skills)*(1 + "Intimidation" in expertiseSkills)
+pInvestigation = pIntMod + profBonus*("Investigation" in skills)*(1 + "Investigation" in expertiseSkills)
+pMedicine = pWisMod + profBonus*("Medicine" in skills)*(1 + "Medicine" in expertiseSkills)
+pNature = pIntMod + profBonus*("Nature" in skills)*(1 + "Nature" in expertiseSkills)
+pPerception = pWisMod + profBonus*("Perception" in skills)*(1 + "Perception" in expertiseSkills)
+pPerformance = pChaMod + profBonus*("Performance" in skills)*(1 + "Performance" in expertiseSkills)
+pPersuasion = pChaMod + profBonus*("Persuasion" in skills)*(1 + "Persuasion" in expertiseSkills)
+pReligion = pWisMod + profBonus*("Religion" in skills)*(1 + "Religion" in expertiseSkills)
+pSleightOfHand = pDexMod + profBonus*("Sleight of Hand" in skills)*(1 + "Sleight of Hand" in expertiseSkills)
+pStealth = pDexMod + profBonus*("Stealth" in skills)*(1 + "Stealth" in expertiseSkills)
+pSurvival = pWisMod + profBonus*("Survival" in skills)*(1 + "Survival" in expertiseSkills)
 
 # speed calcs
 pSpeed = 30
