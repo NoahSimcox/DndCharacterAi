@@ -449,7 +449,7 @@ pdfWriter.update_page_form_field_values(
         "AttacksSpellcasting": weaponTags,
         "Wpn Name": gearWeapon,
         "Wpn1 AtkBonus": wAtkB,
-        "Wpn1 Damage": dmgDie + "+" + weaponB + " " + dmgType,
+        "Wpn1 Damage": dmgDie + "+" + str(weaponB) + " " + dmgType,
         
         # Stuff to comment out if you are printing it out
         "HD": (str(pLevel) + "d" + str(hitDie)),
