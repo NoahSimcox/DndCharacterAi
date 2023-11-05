@@ -15,7 +15,7 @@ formFields = pdfReader.get_form_text_fields()
 pdfWriter.add_page(pdfReader.pages[0])
 pdfWriter.add_page(pdfReader.pages[2])
 
-with open('Dn', 'wb') as clean_file:
+with open('DnDDefault.pdf', 'wb') as clean_file:
     pdfWriter.write(clean_file)
     pdfWriter.write(clean_file)
     pdfWriter.write(clean_file)
