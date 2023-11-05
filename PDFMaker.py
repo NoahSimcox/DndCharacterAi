@@ -280,11 +280,11 @@ pp = 0
 # armor
 ac = 10 + (pClass == "Fighter")
 match gearArmor:
-    case "Padded" | "Leather":
+    case "Padded Armor" | "Leather Armor":
         ac += 1 + pDexMod
     case "Studded Leather":
         ac += 2 + pDexMod
-    case "Hide":
+    case "Hide Armor":
         ac += 2 + min(pDexMod, 2)
     case "Chain Shirt":
         ac += 3 + min(pDexMod, 2)
@@ -298,8 +298,31 @@ match gearArmor:
         ac += 6
     case "Scale" | "Scale Mail":
         ac += 7
-    case "Plate" | "Plate Mail":
+    case "Plate" | "Plate Mail" | "Plate Armor":
         ac += 8
+
+# weapons
+weaponBase = pStrMod
+weaponTags = ""
+if(gearWeapon in ["Dagger", "Shortsword", "Rapier", "Scimitar", "Whip", "Light Crossbow", "Dart", "Shortbow", "Sling", "Hand Crossbow", "Heavy Crossbow", "Longbow"]):
+    weaponBase = pDexMod
+wAtkBonus = weaponBase + profBonus 
+
+dmgDie = "1d8"
+match gearWeapon:
+    case "Blowgun":
+        dmgDie = "1"
+    case "Club" | "Dagger" | "Light Hammer" | "Sickle" | "Dart" | "Sling":
+        dmgDie = "1d4"
+    case "Handaxe" | "Javelin" | "Mace" | "Quarterstaff" | "Spear" | "Shortbow" | "Scimitar" | "Shortsword" | "Trident" | "Hand Crossbow":
+        dmgDie = "1d6"
+    case "Glaive" | "Halberd" | "Pike" | "Heavy Crossbow":
+        dmgDie = "1d10"
+    case "Greataxe" | "Lance":
+        dmgDie = "1d12"
+    case "Greatsword" | "Maul":
+        dmgDie = "2d6"
+dmgType = "s"
 
 # place everything in the writer object
 pdfWriter.update_page_form_field_values(
