@@ -65,7 +65,7 @@ print(refined_stat_rankings_list)
 
 
 #figuring out the race
-dnd_race_prompt = f"Using this prompt: '{prompt}' determine a suitable 'race', from Dnd 5e, for this character and output just that race name. It must only be one word."
+dnd_race_prompt = f"Using this prompt: '{prompt}' determine a 'race', from Dnd 5e, and output just that race name."
 
 dnd_race = openai.ChatCompletion.create(
     model="gpt-4",
