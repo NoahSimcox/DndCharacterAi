@@ -300,10 +300,10 @@ pp = 0
 # armor
 ac = 10 + (pClass == "Fighter")
 match gearArmor:
-    case "Padded Armor" | "Leather Armor":
+    case "Padded Armor" | "Leather Armor" | "Leather" | "Padded":
         ac += 1 + pDexMod
         gp -= 10
-    case "Studded Leather":
+    case "Studded Leather" | "Studded Leather Armor":
         ac += 2 + pDexMod
         gp -= 45
     case "Hide Armor":
