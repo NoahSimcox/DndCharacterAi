@@ -9,8 +9,9 @@ keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "
 
 dnd_armor_var = ""
 dnd_weapon_var = ""
-dnd_refined_spell_var = ""
-dnd_refined_cantrip_var = ""
+dnd_raw_spell_list = ""
+dnd_raw_cantrip_list = ""
+
 
 #gold pieces
 gp = 125
