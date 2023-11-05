@@ -11,11 +11,14 @@ pdfReader = PyPDF2.PdfReader(pdfFileObj)
 pdfWriter = PyPDF2.PdfWriter()
 formFields = pdfReader.get_form_text_fields()
 
-def clean():
-    with open('GeneratedCharacter.pdf', 'wb') as clean_file:
-        pdfWriter.write(clean_file)
 
-clean()
+with open('GeneratedCharacter.pdf', 'wb') as clean_file:
+    pdfWriter.write(clean_file)
+    pdfWriter.write(clean_file)
+    pdfWriter.write(clean_file)
+    pdfWriter.write(clean_file)
+    pdfWriter.write(clean_file)
+
 
 # copying page over to the writer, clear old PDF
 pdfWriter.add_page(pdfReader.pages[0])
@@ -518,5 +521,4 @@ if spellStat != "No":
 with open('GeneratedCharacter.pdf', 'wb') as edited_file:
     pdfWriter.write(edited_file)
 
-clean()
 edited_file.close()
