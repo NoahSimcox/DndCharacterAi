@@ -2,19 +2,17 @@ import PyPDF2
 import random
 import DndAi
 
-pdfFileObj = open('DnDDefault.pdf', 'rb')
+with open('DnDDefault.pdf', 'rb') as pdf_file:
+    pdfReader = PyPDF2.PdfFileReader(pdf_file)
 
 # creating reader and writer objects
-pdfReader = PyPDF2.PdfReader(pdfFileObj)
-pdfWriter = PyPDF2.PdfWriter()
+pdfWriter = PyPDF2.PdfFileWriter()
 formFields = pdfReader.get_form_text_fields()
 
 # copying page over to the writer, clear old PDF
 pdfWriter.add_page(pdfReader.pages[0])
 pdfWriter.add_page(pdfReader.pages[1])
 pdfWriter.add_page(pdfReader.pages[2])
-with open("GeneratedCharacter.pdf", "wb") as output_stream:
-    pdfWriter.write(output_stream)
 
 # temp variables for now
 name = "Bob D. Builder"
@@ -162,12 +160,10 @@ pSTCha = pChaMod + profBonus*("CHA" in profSaves)
 
 
 # determine skills known
-skills = []
-for i in range(skillsKnown):
-    if(i < possibleSkills.length):
-        skills[i] = possibleSkills[i]
+skills = possibleSkills # limit this by the number of skills you can have
 for i in range(expertiseCount):
     expertiseSkills += skills[i]
+    
 pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)*(1 + "Acrobatics" in expertiseSkills)
 pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)*(1 + "Animal Handling" in expertiseSkills) 
 pArcana = pIntMod + profBonus*("Arcana" in skills)*(1 + "Arcana" in expertiseSkills)
@@ -466,7 +462,7 @@ pdfWriter.update_page_form_field_values(
 
 
 # put everything in the new PDF
-with open("GeneratedCharacter.pdf", "wb") as output_stream:
-    pdfWriter.write(output_stream)
+with open("GeneratedCharacter.pdf", "wb") as updated_pdf_file:
+    pdfWriter.write(updated_pdf_file)
 
-output_stream.close()
+updated_pdf_file.close()    
