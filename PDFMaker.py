@@ -7,6 +7,7 @@ import DndAi
 pdfFileObj = open('DnDDefault.pdf', 'rb')
 
 # creating reader and writer objects
+pdfReader = PyPDF2.PdfReader(pdfFileObj)
 pdfWriter = PyPDF2.PdfWriter()
 formFields = pdfReader.get_form_text_fields()
 
