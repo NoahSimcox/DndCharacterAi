@@ -60,6 +60,7 @@ refined_stat_rankings_list = refined_stat_rankings.choices[0].message["content"]
 j = 0
 while j < len(refined_stat_rankings):
     refined_stat_rankings_list[j] = refined_stat_rankings_list[j].strip()
+    j += 1
 print(refined_stat_rankings_list)
 
 
@@ -87,6 +88,7 @@ dnd_profs_list = dnd_profs.choices[0].message["content"].split(",")
 i = 0
 while i < len(dnd_profs_list):
     dnd_profs_list[i] = dnd_profs_list[i].strip()
+    i += 1
 print(dnd_profs_list)
 
 
