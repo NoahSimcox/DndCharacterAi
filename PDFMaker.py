@@ -2,9 +2,9 @@ import PyPDF2
 import random
 import DndAi
 
-# with open('DnDDefault.pdf', 'rb') as source_file:
+# with open('DnDDefault2.pdf', 'rb') as source_file:
 #     pdfReader = PyPDF2.PdfReader(source_file)
-pdfFileObj = open('DnDDefault.pdf', 'rb')
+pdfFileObj = open('DnDDefault2.pdf', 'rb')
 
 # creating reader and writer objects
 pdfReader = PyPDF2.PdfReader(pdfFileObj)
@@ -15,7 +15,7 @@ formFields = pdfReader.get_form_text_fields()
 pdfWriter.add_page(pdfReader.pages[0])
 pdfWriter.add_page(pdfReader.pages[1])
 
-with open('DnDDefault.pdf', 'wb') as clean_file:
+with open('DnDDefault2.pdf', 'wb') as clean_file:
     pdfWriter.write(clean_file)
 
 # temp variables for now
