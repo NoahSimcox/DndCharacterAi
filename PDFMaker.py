@@ -160,11 +160,12 @@ pSTInt = pIntMod + profBonus*("INT" in profSaves)
 pSTWis = pWisMod + profBonus*("WIS" in profSaves)
 pSTCha = pChaMod + profBonus*("CHA" in profSaves)
 
-for i in range(expertiseCount):
-    expertiseSkills += skills[i]
 
 # determine skills known
 skills = possibleSkills # limit this by the number of skills you can have
+for i in range(expertiseCount):
+    expertiseSkills += skills[i]
+    
 pAcrobatics = pDexMod + profBonus*("Acrobatics" in skills)*(1 + "Acrobatics" in expertiseSkills)
 pAnimalHandling = pWisMod + profBonus*("Animal Handling" in skills)*(1 + "Animal Handling" in expertiseSkills) 
 pArcana = pIntMod + profBonus*("Arcana" in skills)*(1 + "Arcana" in expertiseSkills)
@@ -449,10 +450,6 @@ pdfWriter.update_page_form_field_values(
         "Wpn Name": gearWeapon,
         "Wpn1 AtkBonus": wAtkB,
         "Wpn1 Damage": dmgDie + "+" + weaponB + " " + dmgType,
-        "Ideals": DndAi.dnd_ideals_var,
-        "Bonds": DndAi.dnd_bonds_var,
-        "Flaws": DndAi.dnd_flaws_var,
-        "PersonalityTraits": DndAi.dnd_personality_traits_var,
         
         # Stuff to comment out if you are printing it out
         "HD": (str(pLevel) + "d" + str(hitDie)),
