@@ -460,6 +460,10 @@ pdfWriter.update_page_form_field_values(
         "Wpn Name": gearWeapon,
         "Wpn1 AtkBonus": wAtkB,
         "Wpn1 Damage": weapDmg,
+        "Bond": DndAi.dnd_bonds_var,
+        "Ideal": DndAi.dnd_ideals_var,
+        "Flaw": DndAi.dnd_flaws_var,
+        "PersonalityTraits": DndAi.dnd_personality_traits_var,
         
         # Stuff to comment out if you are printing it out
         "HD": (str(pLevel) + "d" + str(hitDie)),
