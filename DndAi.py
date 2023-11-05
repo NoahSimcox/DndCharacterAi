@@ -3,7 +3,7 @@ import HahaCantGetMySecretKey
 
 openai.api_key = HahaCantGetMySecretKey.openai.api_key
 
-prompt = "a nimble and shadowy figure with a penchant for stealth and cunning. Sable's piercing gray eyes and quick fingers make them a master of infiltration, lock-picking, and uncovering hidden traps. Clad in dark leather armor and with a sly smirk, Sable excels in subterfuge, making them a formidable ally or a crafty adversary in the world of Dungeons & Dragons."
+prompt = "a wiry and agile elf with a penchant for precision and stealth. Varis is known for their quick wit, silent footsteps, and mastery of the dagger, making them a skilled pickpocket, lockbreaker, and assassin when needed. With a mysterious aura and a cloak that seems to blend into the shadows, Varis navigates the seedy underbelly of the world with finesse and finesse."
 
 keywords = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
 
@@ -65,7 +65,7 @@ print(refined_stat_rankings_list)
 
 
 #figuring out the race
-dnd_race_prompt = f"Using this prompt: '{prompt}' determine a race, from Dnd 5e, and output just that race name."
+dnd_race_prompt = f"Using this prompt: '{prompt}' determine a common race, from Dnd 5e, and output just that race name."
 
 dnd_race = openai.ChatCompletion.create(
     model="gpt-4",
