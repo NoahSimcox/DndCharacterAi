@@ -3,10 +3,10 @@ import random
 import DndAi
 
 with open('DnDDefault.pdf', 'rb') as pdf_file:
-    pdfReader = PyPDF2.PdfFileReader(pdf_file)
+    pdfReader = PyPDF2.PdfReader(pdf_file)
 
 # creating reader and writer objects
-pdfWriter = PyPDF2.PdfFileWriter()
+pdfWriter = PyPDF2.PdfWriter()
 formFields = pdfReader.get_form_text_fields()
 
 # copying page over to the writer, clear old PDF
