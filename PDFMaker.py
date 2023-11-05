@@ -464,5 +464,4 @@ pdfWriter.update_page_form_field_values(
 # put everything in the new PDF
 with open("GeneratedCharacter.pdf", "wb") as updated_pdf_file:
     pdfWriter.write(updated_pdf_file)
-
-updated_pdf_file.close()    
+    updated_pdf_file.close()
